@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    float speed;
+    PlayerStat stat;
+    private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        speed = stat.Speed();
     }
 
     // Update is called once per frame
