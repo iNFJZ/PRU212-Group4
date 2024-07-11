@@ -10,5 +10,6 @@
 # git checkout ten_branch_moi  
 # git rebase main  
 ## Xử lý xung đột nếu có  
-# git push origin ten_branch_moi  
+# git push
+# Copy đoạn hiện ra paste
 # Truy cập GitHub check lại code sau đó tạo Pull Request
