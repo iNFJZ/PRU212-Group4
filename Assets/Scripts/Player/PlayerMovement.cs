@@ -1,59 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    float speed;
+    private float speed = 5.0f;
 
-    // Start is called before the first frame update
+    private Rigidbody2D rb;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
+        MovePlayer();
+        FlipPlayer();
+    }
 
-            gameObject.transform.position = new Vector3(
-                transform.position.x,
-                transform.position.y + speed * Time.deltaTime,
-                transform.position.z
-                );
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
+    void MovePlayer()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-            gameObject.transform.position = new Vector3(
-                transform.position.x - speed * Time.deltaTime,
-                transform.position.y,
-                transform.position.z
-                );
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
+        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        rb.velocity = movement * speed;
+    }
 
-            gameObject.transform.position = new Vector3(
-                transform.position.x,
-                transform.position.y - speed * Time.deltaTime,
-                transform.position.z
-                );
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-
-            gameObject.transform.position = new Vector3(
-                transform.position.x + speed * Time.deltaTime,
-                transform.position.y,
-                transform.position.z
-                );
-        }
-        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (direction.x >= transform.localPosition.x)
+    void FlipPlayer()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePosition.x >= transform.position.x)
         {
             if (transform.localScale.x < 0)
             {
@@ -68,12 +49,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
     Vector3 TurnAround(Vector3 scale)
     {
-        return new Vector3(
-            scale.x * -1,
-            scale.y,
-            scale.z
-        );
+        return new Vector3(scale.x * -1, scale.y, scale.z);
     }
 }
