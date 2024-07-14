@@ -32,7 +32,6 @@ public class RoomSpawner : MonoBehaviour
         var maps = GameObject.FindGameObjectsWithTag("Map");
         if (maps.Length >= 10)
         {
-            Debug.Log(maps.Length);
             max = 0;
         }
         if (!spawn)
