@@ -178,13 +178,13 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 5
+    height: 5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Full
       objectReference: {fileID: 0}
+    - target: {fileID: 7922104696288005544, guid: 1a3484ea49b313a4386e3ce5d862fc1f, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 639371873865583114, guid: 7ce55431ab245264bba86539dd716943, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
