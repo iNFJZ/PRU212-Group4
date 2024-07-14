@@ -11,11 +11,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     public float attackCooldown = 2f;
     [SerializeField]
-    public int attackDamage = 10;
+    public float attackDamage = 10f;
 
     private Transform player;
     [SerializeField]
     private float lastAttackTime = 0f;
+
+    public PlayerHealth playerHealth;
 
     void Start()
     {
@@ -55,5 +57,13 @@ public class EnemyController : MonoBehaviour
     {
         speed = 3f; 
         GetComponent<Animator>().ResetTrigger("Attack"); 
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerHealth>().health -= attackDamage;
+        }
     }
 }
