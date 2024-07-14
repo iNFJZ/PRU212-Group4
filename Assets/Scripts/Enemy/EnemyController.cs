@@ -4,43 +4,56 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform player;
+   [SerializeField]
+    public float speed = 3f;
     [SerializeField]
-    public float moveSpeed = 5f;
+    public float attackDistance = 2f;
     [SerializeField]
-    public float attackRange = 3f;
+    public float attackCooldown = 2f;
     [SerializeField]
-    private bool isAttacking = false; 
-    void Update()
-    {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+    public int attackDamage = 10;
 
-        if (distanceToPlayer <= attackRange && !isAttacking)
-        {
-            AttackPlayer();
-        }
-        else
-        {
-            MoveTowardsPlayer();
-        }
+    private Transform player;
+    [SerializeField]
+    private float lastAttackTime = 0f;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    void MoveTowardsPlayer()
+    void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-        transform.LookAt(player);
+        Vector3 direction = (player.position - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
+    
+        if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        {
+            if (Time.time - lastAttackTime >= attackCooldown)
+            {
+                AttackPlayer();
+                lastAttackTime = Time.time;
+            }
+        }
     }
 
     void AttackPlayer()
     {
-        isAttacking = true;
-
-        Debug.Log("Enemy is attacking!");
-        Invoke("ResumeMoving", 1f);
+        Vector3 direction = (player.position - transform.position).normalized;
+    
+        float speedMultiplier = 2f;
+        speed = speedMultiplier * speed;
+        transform.position += direction * speed * Time.deltaTime;
+        GetComponent<Animator>().SetTrigger("Attack");
+    
+        Invoke("ResetAttack", 0.5f);
+    
+        //player.GetComponent<PlayerScript>().TakeDamage(attackDamage);
     }
-
-    void ResumeMoving()
+    
+    void ResetAttack()
     {
-        isAttacking = false;
+        speed = 3f; 
+        GetComponent<Animator>().ResetTrigger("Attack"); 
     }
 }
