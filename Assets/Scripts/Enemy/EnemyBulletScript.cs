@@ -39,5 +39,10 @@ public class EnemyBulletScript : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerHealth>().health -= attackDamage;
         }
+        else if(collision.gameObject.CompareTag("Map"))
+        {
+            Destroy(gameObject);
+        }
+
     }
 }
