@@ -1929,7 +1929,7 @@ MonoBehaviour:
   attackDamage: 10
   lastAttackTime: 0
   playerHealth: {fileID: 1340043273}
---- !u!1001 &2050537463
+--- !u!1001 &1822674624
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1981,16 +1981,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Full
       objectReference: {fileID: 0}
-    - target: {fileID: 7922104696288005544, guid: 1a3484ea49b313a4386e3ce5d862fc1f, type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7922104696288005544, guid: 1a3484ea49b313a4386e3ce5d862fc1f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7922104696288005544, guid: 1a3484ea49b313a4386e3ce5d862fc1f, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2203,7 +2194,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 126677612}
-  - {fileID: 2050537463}
   - {fileID: 1101012731313982963}
   - {fileID: 1013165250}
   - {fileID: 354965943}
@@ -2213,3 +2203,4 @@ SceneRoots:
   - {fileID: 605324885}
   - {fileID: 1383705376}
   - {fileID: 1690940848}
+  - {fileID: 1822674624}
