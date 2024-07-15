@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 7719888516936086078}
   - component: {fileID: 6569547247259310654}
   - component: {fileID: 7438041846142956349}
-  m_Layer: 0
+  - component: {fileID: 2475372680806833373}
+  - component: {fileID: 4311811730670943069}
+  m_Layer: 6
   m_Name: Goblin Mech Rider Sprite Sheet_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -31,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 2775482554589485213}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.81, y: 153.94, z: 0}
+  m_LocalPosition: {x: 2.8, y: -1.8, z: 0}
   m_LocalScale: {x: 2.31, y: 3.5162325, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1440474525, guid: 0de320a91c5316c4db3a72b60fcbd140, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -206,3 +208,34 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &2475372680806833373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775482554589485213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7fd20d27c790c24982705909ecc8964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!114 &4311811730670943069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775482554589485213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441fe7f95c03d6b4f8f5b880fbfecfb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  attackDistance: 2
+  attackCooldown: 2
+  attackDamage: 10
+  lastAttackTime: 0
+  playerHealth: {fileID: 0}

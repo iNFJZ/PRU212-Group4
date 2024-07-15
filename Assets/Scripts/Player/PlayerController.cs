@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject attackPoint;
     public float radius;
     public LayerMask enemies;
+
     void Start()
     {
         attackArea = transform.GetChild(0).gameObject;
@@ -43,14 +44,13 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
-
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
         Vector2 movement = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
         rb.velocity = movement;
 
-        if (moveX != 0 || moveY != 0 )
+        if (moveX != 0 || moveY != 0)
         {
             animator.SetBool("IsMoving", true);
             if (moveX > 0 && !facingRight)
@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.DrawWireSphere(attackPoint.transform.position, radius);
     }
+
     void HandleCrouch()
     {
         if (Input.GetKey(KeyCode.LeftControl))
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {
                 Vector2 movement = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, Input.GetAxis("Vertical") * moveSpeed);
-                rb.velocity = movement * 0.5f; // Giảm tốc độ khi cúi
+                rb.velocity = movement * 0.5f;
                 Debug.Log("Crouch Movement: " + rb.velocity);
             }
         }
@@ -126,9 +127,9 @@ public class PlayerController : MonoBehaviour
     {
         isRolling = true;
         animator.SetBool("IsRolling", true);
-        yield return new WaitForSeconds(0.5f); // Thời gian của animation roll
+        yield return new WaitForSeconds(0.5f);
         animator.SetBool("IsRolling", false);
-        yield return new WaitForSeconds(animationDelay); // Delay giữa các animation
+        yield return new WaitForSeconds(animationDelay);
         isRolling = false;
     }
 
@@ -136,7 +137,16 @@ public class PlayerController : MonoBehaviour
     {
         isDead = true;
         animator.SetBool("IsDead", true);
-        // Thêm các hành động khác khi player chết (ví dụ: disable di chuyển)
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+
+        StartCoroutine(FreezeGameAfterDelay(1f));
+    }
+
+    IEnumerator FreezeGameAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Time.timeScale = 0;
     }
 
     void Flip()
@@ -146,6 +156,4 @@ public class PlayerController : MonoBehaviour
         scaler.x *= -1;
         transform.localScale = scaler;
     }
-
-    
 }
