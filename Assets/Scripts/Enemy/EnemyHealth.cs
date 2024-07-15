@@ -5,16 +5,18 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public float health;
-    public float currentHealth;
+    private float currentHealth;
     private Animator animator;
-    // Start is called before the first frame update
+    private bool isDead = false;
+    private MoveAndChase moveAndChase; // Reference to MoveAndChase script
+
     void Start()
     {
         animator = GetComponent<Animator>();
         currentHealth = health;
+        moveAndChase = GetComponent<MoveAndChase>(); // Get the MoveAndChase component
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health < currentHealth)
@@ -23,10 +25,19 @@ public class EnemyHealth : MonoBehaviour
             animator.SetTrigger("DamageTaken");
         }
 
-        if (health <= 0)
+        if (health <= 0 && !isDead)
         {
+            isDead = true;
             animator.SetBool("isDead", true);
-            Debug.Log("Enemy is dead");
+            moveAndChase.SetDead(); // Call SetDead() in MoveAndChase script
+            StartCoroutine(HandleDeath());
         }
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+
+        Destroy(gameObject); // Destroy the enemy game object
     }
 }
