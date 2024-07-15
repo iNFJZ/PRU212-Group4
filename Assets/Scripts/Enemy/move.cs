@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class MoveAndChase : MonoBehaviour
@@ -12,25 +11,32 @@ public class MoveAndChase : MonoBehaviour
     private Vector3 startPos;
     private bool movingRight = true;
     private Transform player;
+    private bool isDead = false; // Biến kiểm tra enemy đã chết hay chưa
 
     void Start()
     {
         startPos = transform.position;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
     }
 
     void Update()
     {
-        if (player != null && Vector3.Distance(transform.position, player.position) <= chaseRange)
+        if (!isDead) // Chỉ đuổi nếu enemy chưa chết
         {
-            // Đuổi theo player
-            ChasePlayer();
+            if (player != null && Vector3.Distance(transform.position, player.position) <= chaseRange)
+            {
+                // Đuổi theo player
+                ChasePlayer();
+            }
+            else
+            {
+                // Di chuyển qua lại
+                Patrol();
+            }
         }
         else
         {
-            // Di chuyển qua lại
-            Patrol();
+            // Nếu enemy đã chết, có thể làm gì đó khác tại đây nếu cần thiết
         }
     }
 
@@ -86,5 +92,10 @@ public class MoveAndChase : MonoBehaviour
     {
         return new Vector3(scale.x * -1, scale.y, scale.z);
     }
-}
 
+    public void SetDead()
+    {
+        isDead = true;
+        // Ngừng đuổi và làm gì đó khi enemy chết (có thể thêm logic ở đây nếu cần)
+    }
+}
