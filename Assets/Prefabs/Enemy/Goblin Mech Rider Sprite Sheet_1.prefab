@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 4387241562286762553}
   - component: {fileID: 5339813950733807825}
   - component: {fileID: 902071896193958231}
-  - component: {fileID: 3072742288248557609}
   - component: {fileID: 7719888516936086078}
-  - component: {fileID: 6569547247259310654}
   - component: {fileID: 7438041846142956349}
   - component: {fileID: 2475372680806833373}
   - component: {fileID: 4311811730670943069}
+  - component: {fileID: -5909490253837055323}
   m_Layer: 6
   m_Name: Goblin Mech Rider Sprite Sheet_1
   m_TagString: Enemy
@@ -112,21 +111,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3072742288248557609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775482554589485213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6e4c4208d38a3b4a8f07ea9eb620235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDistance: 5
-  moveSpeed: 2
-  chaseRange: 10
 --- !u!61 &7719888516936086078
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,22 +156,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5708283, y: 0.48}
   m_EdgeRadius: 0
---- !u!114 &6569547247259310654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775482554589485213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c486e4ceedda94da0342bd96848d33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 3
-  iFramesDuration: 0
-  numberOfFlashes: 0
-  components: []
 --- !u!114 &7438041846142956349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,9 +201,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441fe7f95c03d6b4f8f5b880fbfecfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   attackDistance: 2
   attackCooldown: 2
   attackDamage: 10
   lastAttackTime: 0
   playerHealth: {fileID: 0}
+  soundControl: {fileID: 0}
+--- !u!50 &-5909490253837055323
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775482554589485213}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 200
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
