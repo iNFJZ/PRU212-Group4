@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isDead;
     public GameManagerScript gameManager;
+    public TimeManager timeManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
             isDead = true;
             animator.SetBool("IsDead", true);
             gameManager.gameOver();
-            
+            timeManager.PlayerDead();
         }
     }
 }
