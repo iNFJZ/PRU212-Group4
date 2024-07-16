@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour
@@ -24,6 +24,12 @@ public class PlayerController : MonoBehaviour
     public GameObject attackPoint;
     public float radius;
     public LayerMask enemies;
+    public SoundControl soundControl;
+
+    private void Awake()
+    {
+        soundControl = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundControl>();
+    }
 
     void Start()
     {
@@ -44,7 +50,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetBool("IsShooting", true);
-
+            soundControl.PlaySFX(soundControl.bullet);
         }
         else
         {
@@ -83,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             animator.SetBool("IsAttacking", true);
+            soundControl.PlaySFX(soundControl.attack);
         }
     }
 
@@ -149,7 +156,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("IsDead", true);
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
-
+        soundControl.PlaySFX(soundControl.death);
         StartCoroutine(FreezeGameAfterDelay(1f));
     }
 
