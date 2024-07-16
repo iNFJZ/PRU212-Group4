@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject attackPoint;
     public float radius;
     public LayerMask enemies;
+
     void Start()
     {
         attackArea = transform.GetChild(0).gameObject;
@@ -39,6 +40,16 @@ public class PlayerController : MonoBehaviour
         HandleCrouch();
         HandleAttack();
         HandleRoll();
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetBool("IsShooting", true);
+
+        }
+        else
+        {
+            animator.SetBool("IsShooting", false);
+        }
     }
 
     void HandleMovement()
@@ -146,6 +157,6 @@ public class PlayerController : MonoBehaviour
         scaler.x *= -1;
         transform.localScale = scaler;
     }
-
+   
     
 }
