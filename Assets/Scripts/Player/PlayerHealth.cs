@@ -27,8 +27,9 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0 && !isDead)
         {
             isDead = true;
-            gameManager.gameOver();
             animator.SetBool("IsDead", true);
+            gameManager.gameOver();
+            
         }
     }
 }
