@@ -29,15 +29,7 @@ public class EnemyHealth : MonoBehaviour
         {
             isDead = true;
             animator.SetBool("isDead", true);
-            moveAndChase.SetDead(); // Call SetDead() in MoveAndChase script
-            StartCoroutine(HandleDeath());
+            Destroy(gameObject);
         }
-    }
-
-    private IEnumerator HandleDeath()
-    {
-        yield return new WaitForSeconds(1f); // Wait for 1 second
-
-        Destroy(gameObject); // Destroy the enemy game object
     }
 }
