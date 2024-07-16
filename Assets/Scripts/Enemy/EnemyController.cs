@@ -18,7 +18,12 @@ public class EnemyController : MonoBehaviour
     private float lastAttackTime = 0f;
 
     public PlayerHealth playerHealth;
+    public SoundControl soundControl;
 
+    private void Awake()
+    {
+        soundControl = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundControl>();
+    }
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -47,7 +52,6 @@ public class EnemyController : MonoBehaviour
         speed = speedMultiplier * speed;
         transform.position += direction * speed * Time.deltaTime;
         GetComponent<Animator>().SetTrigger("Attack");
-    
         Invoke("ResetAttack", 0.5f);
     
         //player.GetComponent<PlayerScript>().TakeDamage(attackDamage);
@@ -63,6 +67,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            soundControl.PlaySFX(soundControl.enemyAttack);
             other.gameObject.GetComponent<PlayerHealth>().health -= attackDamage;
         }
     }
