@@ -40,6 +40,16 @@ public class PlayerController : MonoBehaviour
         HandleCrouch();
         HandleAttack();
         HandleRoll();
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetBool("IsShooting", true);
+
+        }
+        else
+        {
+            animator.SetBool("IsShooting", false);
+        }
     }
 
     void HandleMovement()
