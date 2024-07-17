@@ -247,3 +247,4 @@ MonoBehaviour:
   enemy:
   - {fileID: 4710443112093720905, guid: 447db8314f782d74595ffeff942368c4, type: 3}
   - {fileID: 2775482554589485213, guid: 0beb11c75f5ecaf468d8bf37d2e7d541, type: 3}
+  - {fileID: 715967006232509580, guid: d955f6ff5d6c7d54294a66cd874d045c, type: 3}

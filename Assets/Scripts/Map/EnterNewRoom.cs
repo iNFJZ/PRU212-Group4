@@ -8,11 +8,12 @@ public class EnterNewRoom : MonoBehaviour
     GameObject[] enemy;
     private PolygonCollider2D[] boxCollider;
     private bool enter = false;
-    
+    private Vector3 spawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
-        boxCollider = gameObject.GetComponents<PolygonCollider2D>();        
+        boxCollider = gameObject.GetComponents<PolygonCollider2D>();
     }
 
     // Update is called once per frame
@@ -21,11 +22,11 @@ public class EnterNewRoom : MonoBehaviour
         if (enter)
         {
             var aliveEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-            if (aliveEnemy == null || aliveEnemy.Length==0)
+            if (aliveEnemy == null || aliveEnemy.Length == 0)
             {
                 OnDisable();
             }
-        }   
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -40,15 +41,19 @@ public class EnterNewRoom : MonoBehaviour
             enter = true;
         }
     }
-    void SpawnEnemy(int min,int max)
+    void SpawnEnemy(int min, int max)
     {
         Debug.Log("spawn");
-        int count = Random.Range(min,max);
+        int count = Random.Range(min, max);
         int rand;
         for (int i = 0; i < count; i++)
         {
-            rand=Random.Range(0,enemy.Length);
-            Instantiate(enemy[rand],transform.parent.localPosition,Quaternion.identity);
+            spawnPoint = new Vector3(
+                transform.parent.position.x + Random.Range(-2f, 2f)
+                , transform.parent.position.y + Random.Range(-2f, 2f)
+                , transform.parent.position.z);
+            rand = Random.Range(0, enemy.Length);
+            Instantiate(enemy[rand], spawnPoint, Quaternion.identity);
         }
         Debug.Log("spawn " + count);
     }

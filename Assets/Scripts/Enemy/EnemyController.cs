@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 direction = (player.position - transform.position).normalized;
     
-        float speedMultiplier = 2f;
+        float speedMultiplier = 1f;
         speed = speedMultiplier * speed;
         transform.position += direction * speed * Time.deltaTime;
         GetComponent<Animator>().SetTrigger("Attack");

@@ -29,7 +29,6 @@ public class PlayerHealth : MonoBehaviour
         {
             isDead = true;
             animator.SetBool("IsDead", true);
-            Time.timeScale = 0;
             gameManager.gameOver();
             timeManager.PlayerDead();
         }
